@@ -1,6 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+
 const {MongoClient} = require('mongodb');
 http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -43,9 +44,8 @@ http.createServer((req, res) => {
         }     
         main().catch(console.error);
  
-    }
-    
-}).listen(4970,()=>console.log("Server is running"));
+    } 
+}).listen(process.env.PORT,()=>console.log("Server is running"));
 
 async function findsomedata(client ){
     const cursor = client.db("gotbooksdatabase").collection("gotbooks_Env").find({});
